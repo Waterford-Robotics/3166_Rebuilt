@@ -4,10 +4,20 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
+     // private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.k_driverController);
+     public final Swervesubsystem m_swerveSubsystem = new SwerveSubsystem();
+
+
   public RobotContainer() {
     configureBindings();
   }
@@ -15,7 +25,7 @@ public class RobotContainer {
   private void configureBindings() {
 
 
-             //resets navX
+      /*        //resets navX
         new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
         .onTrue(new InstantCommand(
             () -> m_swerveSubsystem.zeroGyro(),
@@ -32,7 +42,7 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_swerveSubsystem.robotOrientedDriveCommand(() -> -1*m_driverController.getRawAxis(ControllerConstants.k_lefttrig)),
             m_swerveSubsystem)); 
-  }
+  }*/
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
