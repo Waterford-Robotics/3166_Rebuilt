@@ -25,7 +25,7 @@ public class RobotContainer {
   private void configureBindings() {
 
 
-      /*        //resets navX
+              //resets navX
         new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
         .onTrue(new InstantCommand(
             () -> m_swerveSubsystem.zeroGyro(),
@@ -42,7 +42,7 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_swerveSubsystem.robotOrientedDriveCommand(() -> -1*m_driverController.getRawAxis(ControllerConstants.k_lefttrig)),
             m_swerveSubsystem)); 
-  }*/
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
