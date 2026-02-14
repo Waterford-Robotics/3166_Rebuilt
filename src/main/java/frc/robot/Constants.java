@@ -57,7 +57,7 @@ public final class Constants {
         public static final int k_intakeMotor = 1; 
     }
     public static final class IndexMotorChannelConstants{
-        public static final int k_indexMotor = 0; 
+        public static final int k_indexMotor = 2; 
     }
 }
 
