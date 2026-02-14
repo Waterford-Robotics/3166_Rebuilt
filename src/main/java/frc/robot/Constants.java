@@ -51,6 +51,13 @@ public final class Constants {
        // public static final double spinUpAutoTime = 8; 
        // public static final double shootAutoTime = 3; 
         
-  }
+  }  
+    public static final class MotorChannelConstants{
+        public static final int k_shooterMotors = 0; 
+        public static final int k_intakeMotor = 1; 
+    }
+    public static final class IndexMotorChannelConstants{
+        public static final int k_indexMotor = 0; 
+    }
 }
 
