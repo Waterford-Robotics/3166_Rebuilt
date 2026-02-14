@@ -8,14 +8,20 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+//import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
+//import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.Swervesubsystem;
+import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.ControllerConstants;
+import frc.robot.Constants.DriveConstants;
+
+
 
 public class RobotContainer {
-     // private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.k_driverController);
-     public final Swervesubsystem m_swerveSubsystem = new SwerveSubsystem();
+     private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.k_driverController);
+     public final Swervesubsystem m_swerveSubsystem = new Swervesubsystem();
 
 
   public RobotContainer() {
@@ -30,7 +36,7 @@ public class RobotContainer {
         .onTrue(new InstantCommand(
             () -> m_swerveSubsystem.zeroGyro(),
             m_swerveSubsystem));
-
+/* 
         // strafe right (right trigger)
         new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
         .whileTrue(new RunCommand(
@@ -41,7 +47,7 @@ public class RobotContainer {
         new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_lefttrig) > 0.05)
         .whileTrue(new RunCommand(
             () -> m_swerveSubsystem.robotOrientedDriveCommand(() -> -1*m_driverController.getRawAxis(ControllerConstants.k_lefttrig)),
-            m_swerveSubsystem)); 
+            m_swerveSubsystem)); */
   }
 
   public Command getAutonomousCommand() {
