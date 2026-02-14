@@ -34,7 +34,8 @@ public final class Constants {
 
     public static final class ControllerConstants {
         
-        public static final int resetNavX = 8; 
+        public static final int resetNavX = 8;
+        public static final int shootFuel = 6; 
        // public static final int k_algaeArmUp = 4;  //Y button
        // public static final int k_algaeArmDown = 1; //A button
        // public static final int k_algaeDisplaceButton = 2; // B button (right)
