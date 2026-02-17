@@ -4,6 +4,7 @@ package frc.robot;
 //import com.pathplanner.lib.config.PIDConstants;
 //import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.XboxController.Axis;
 
 public final class Constants {
     
@@ -41,8 +42,8 @@ public final class Constants {
        // public static final int k_algaeDisplaceButton = 2; // B button (right)
        // public static final int k_troughRollerForwardButton = 6; //Right bumper
        // public static final int k_troughRollerBackwardButton = 5; //Left bumper
-       // public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
-       // public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
+       public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
+       public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
     }
 
     public static final class AutoConstants {
@@ -54,11 +55,19 @@ public final class Constants {
         
   }  
     public static final class MotorChannelConstants{
-        public static final int k_shooterMotors = 0; 
-        public static final int k_intakeMotor = 1; 
+        public static final int k_shooterShooter1 = 6; 
+        public static final int k_shooterShooter2 = 7; 
+        public static final int k_shooterIntake = 5; 
+        
     }
     public static final class IndexMotorChannelConstants{
         public static final int k_indexMotor = 2; 
+    }
+    
+    public static final class ShooterConstants{
+        public static final double k_shooter1Speed = -1;
+        public static final double k_shooter2Speed = 1;
+        public static final double k_shooterIntakeSpeed = -1;
     }
 }
 

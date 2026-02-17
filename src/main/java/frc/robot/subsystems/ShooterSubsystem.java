@@ -3,30 +3,39 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.MotorChannelConstants;
+import frc.robot.Constants.ShooterConstants;
 
 
 public class ShooterSubsystem extends SubsystemBase{
-     private Talon shooterMotors;
-     private Talon intakeMotor;
+     private Talon shooter1;
+     private Talon shooter2;
+     private Talon intake;
+
 
     public ShooterSubsystem() {
-        shooterMotors = new Talon(MotorChannelConstants.k_shooterMotors);
-        intakeMotor = new Talon(MotorChannelConstants.k_intakeMotor);
+        shooter1 = new Talon(MotorChannelConstants.k_shooterShooter1);
+        shooter2 = new Talon(MotorChannelConstants.k_shooterShooter2);
+        intake = new Talon(MotorChannelConstants.k_shooterIntake);
+        
     }
 
     public void spinShooterCommand() {
-        shooterMotors.set(1);
+        shooter1.set(ShooterConstants.k_shooter1Speed);
+        shooter2.set(ShooterConstants.k_shooter2Speed);
+        intake.set(ShooterConstants.k_shooterIntakeSpeed);
     }
 
     public void stopShooterCommand() {
-        shooterMotors.set(0);
+        shooter1.set(0);
+        shooter2.set(0);
+        intake.set(0);
     }
     public void spinIntakeCommand() {
-        intakeMotor.set(1);
+        intake.set(0.2);
     }
 
     public void stopIntakeCommand() {
-        intakeMotor.set(0);
+        intake.set(0);
     }
 
 
