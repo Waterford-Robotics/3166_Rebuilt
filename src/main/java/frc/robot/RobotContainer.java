@@ -84,5 +84,5 @@ public class RobotContainer {
    Command driveFieldOrientedAngularVelocity = m_swerveSubsystem.driveCommand(
         () -> MathUtil.applyDeadband(m_driverController.getLeftY() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
         () -> MathUtil.applyDeadband(m_driverController.getLeftX() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
-        () -> m_driverController.getRightX() * DriveConstants.k_turnRate); 
+        () -> -1*m_driverController.getRightX() * DriveConstants.k_turnRate); 
 }
