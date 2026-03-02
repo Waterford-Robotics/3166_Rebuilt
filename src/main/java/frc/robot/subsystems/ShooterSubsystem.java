@@ -17,6 +17,14 @@ public class ShooterSubsystem extends SubsystemBase{
         shooter2 = new Talon(MotorChannelConstants.k_shooterShooter2);
         intake = new Talon(MotorChannelConstants.k_shooterIntake);
         
+         // Force motors off at startup
+        shooter1.set(0);
+        shooter2.set(0);
+        intake.set(0);
+
+        shooter1.setSafetyEnabled(true);
+        shooter2.setSafetyEnabled(true);
+        intake.setSafetyEnabled(true);
     }
 
     public void spinShooterCommand() {

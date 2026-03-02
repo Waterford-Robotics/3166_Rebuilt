@@ -65,9 +65,9 @@ public final class Constants {
     }
     
     public static final class ShooterConstants{
-        public static final double k_shooter1Speed = -1;
-        public static final double k_shooter2Speed = 1;
-        public static final double k_shooterIntakeSpeed = -1;
+        public static final double k_shooter1Speed = -0.3;
+        public static final double k_shooter2Speed = -0.3;
+        public static final double k_shooterIntakeSpeed = 0.3;
         
     }
 }

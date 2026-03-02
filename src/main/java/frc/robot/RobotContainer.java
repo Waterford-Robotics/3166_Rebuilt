@@ -40,33 +40,69 @@ public class RobotContainer {
 
   private void configureBindings() {
 
+    //temporary: test where right trigger axis reads
+    System.out.println("Right Trigger Axis: " + m_driverController.getRawAxis(ControllerConstants.k_righttrig));
+
 
               //resets navX
         new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
         .onTrue(new InstantCommand(
             () -> m_swerveSubsystem.zeroGyro(),
             m_swerveSubsystem));
-        new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
-        .onTrue(new InstantCommand(
-            () -> m_indexerSubsystem.spinIndexerCommand(),
-            m_indexerSubsystem));
-        new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
-        .onTrue(new InstantCommand(
-            () -> m_shooterSubsystem.spinShooterCommand(),
-            m_indexerSubsystem)); 
-        new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
-        .onTrue(new InstantCommand(
-            () -> m_shooterSubsystem.spinIntakeCommand(),
-            m_indexerSubsystem));          
+        // new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
+        // .onTrue(new InstantCommand(
+        //     () -> m_indexerSubsystem.spinIndexerCommand(),
+        //     m_indexerSubsystem));
+        // new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
+        // .onTrue(new InstantCommand(
+        //     () -> m_shooterSubsystem.spinShooterCommand(),
+        //     m_indexerSubsystem)); 
+        // new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
+        // .onTrue(new InstantCommand(
+        //     () -> m_shooterSubsystem.spinIntakeCommand(),
+        //     m_indexerSubsystem));          
         
-        new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
-      .whileTrue(
-        new InstantCommand(()-> m_shooterSubsystem.spinShooterCommand(), m_shooterSubsystem))
-      .onFalse(
-        new InstantCommand(()-> m_shooterSubsystem.stopShooterCommand(), m_shooterSubsystem)
-      );
+
+        //possible stick drift (dont use)
+        // new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
+        // .whileTrue(
+        //   new RunCommand(
+        //     () -> m_shooterSubsystem.spinShooterCommand(),
+        //     m_shooterSubsystem
+        //   )
+        // )
+        // .onFalse(
+        //   new InstantCommand(
+        //     () -> m_shooterSubsystem.stopShooterCommand(),
+        //     m_shooterSubsystem
+        //   )
+        // );
+
+        m_driverController.rightTrigger(0.2)
+        .whileTrue(
+          new RunCommand(
+            () -> m_shooterSubsystem.spinShooterCommand(),
+            m_shooterSubsystem
+          )
+        )
+        .onFalse(
+          new InstantCommand(
+            () -> m_shooterSubsystem.stopShooterCommand(),
+            m_shooterSubsystem
+          )
+        );
+
+
+
+    //safeguard
+    m_shooterSubsystem.setDefaultCommand(
+    new RunCommand(
+        () -> m_shooterSubsystem.stopShooterCommand(),
+        m_shooterSubsystem
+    )
+    );
     
-        //strafe left, left trigger
+    //strafe left, left trigger
         new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_lefttrig) > 0.05)
         .whileTrue(new RunCommand(
             () -> m_swerveSubsystem.robotOrientedDriveCommand(() -> -1*m_driverController.getRawAxis(ControllerConstants.k_lefttrig)),
