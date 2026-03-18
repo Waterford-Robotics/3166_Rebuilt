@@ -46,18 +46,19 @@ public class RobotContainer {
         .onTrue(new InstantCommand(
             () -> m_swerveSubsystem.zeroGyro(),
             m_swerveSubsystem));
-        new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
+        //shoots
+        new JoystickButton(m_driverController.getHID(), ControllerConstants.shootFuel)
         .onTrue(new InstantCommand(
             () -> m_indexerSubsystem.spinIndexerCommand(),
             m_indexerSubsystem));
-        new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
+        new JoystickButton(m_driverController.getHID(), ControllerConstants.shootFuel)
         .onTrue(new InstantCommand(
             () -> m_shooterSubsystem.spinShooterCommand(),
-            m_indexerSubsystem)); 
-        new JoystickButton(m_driverController.getHID(), ControllerConstants.resetNavX)
+            m_shooterSubsystem)); 
+        new JoystickButton(m_driverController.getHID(), ControllerConstants.shootFuel)
         .onTrue(new InstantCommand(
             () -> m_shooterSubsystem.spinIntakeCommand(),
-            m_indexerSubsystem));          
+            m_shooterSubsystem));          
         
         new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
       .whileTrue(
