@@ -22,6 +22,7 @@ import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 
 
@@ -30,6 +31,7 @@ public class RobotContainer {
      public final Swervesubsystem m_swerveSubsystem = new Swervesubsystem();
      public final IndexerSubsystem m_indexerSubsystem = new IndexerSubsystem();
      public final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+     public final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
      
      
 
@@ -58,7 +60,11 @@ public class RobotContainer {
         new JoystickButton(m_driverController.getHID(), ControllerConstants.shootFuel)
         .onTrue(new InstantCommand(
             () -> m_shooterSubsystem.spinIntakeCommand(),
-            m_shooterSubsystem));          
+            m_shooterSubsystem));       
+        new JoystickButton(m_driverController.getHID(), ControllerConstants.runIntake)
+        .onTrue(new InstantCommand(
+            () -> m_intakeSubsystem.onIntakeCommand(),
+            m_intakeSubsystem));     
         
         new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
       .whileTrue(

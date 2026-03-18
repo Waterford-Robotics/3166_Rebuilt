@@ -37,6 +37,7 @@ public final class Constants {
         
         public static final int resetNavX = 8;
         public static final int shootFuel = 6; 
+        public static final int runIntake = 9;
        // public static final int k_algaeArmUp = 4;  //Y button
        // public static final int k_algaeArmDown = 1; //A button
        // public static final int k_algaeDisplaceButton = 2; // B button (right)
@@ -61,7 +62,10 @@ public final class Constants {
         
     }
     public static final class IndexMotorChannelConstants{
-        public static final int k_indexMotor = 2; 
+        public static final int k_indexMotor = 2;
+    }
+    public static final class IntakeMotorChannelConstants{
+        public static final int k_intakeMotor = 2;
     }
     
     public static final class ShooterConstants{
