@@ -60,8 +60,8 @@ public final class Constants {
         
   }  
   public static final class IndexerConstants{
-        public static final double k_IndexerSpeed = .6;
-        public static final double k_ShooterIntakeSpeed = -.3;
+        public static final double k_IndexerSpeed = -.7;
+        public static final double k_ShooterIntakeSpeed = -.7;
 
   }
     public static final class MotorChannelConstants{
@@ -75,8 +75,8 @@ public final class Constants {
     }
     
     public static final class ShooterConstants{
-        public static final double k_shooter1Speed = -.6;
-        public static final double k_shooter2Speed = .6;
+        public static final double k_shooter1Speed = -.8;
+        public static final double k_shooter2Speed = .8;
        
         
     }
@@ -87,8 +87,8 @@ public final class Constants {
         
     }
     public static final class IntakeConstants{
-        public static final double k_ElivatorMoveSpeedDown = -.2;
-        public static final double k_ElivatorMoveSpeedUp = .2;
+        public static final double k_ElivatorMoveSpeedDown = -.5;
+        public static final double k_ElivatorMoveSpeedUp = .5;
 
         public static final double k_MainIntakeSpeed = .75;
        

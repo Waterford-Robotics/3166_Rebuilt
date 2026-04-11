@@ -80,13 +80,13 @@ public class RobotContainer {
             () -> m_IntakeSubsystem.MoveUpIntakeCommand(),
             m_IntakeSubsystem));
         new JoystickButton(joystick.getHID(), ControllerConstants.intakeUp)
-        .onTrue(new InstantCommand(
+        .onFalse(new InstantCommand(
             () -> m_IntakeSubsystem.StopIntakeElavator(),
             m_IntakeSubsystem));
        
         //downIntake
         new JoystickButton(joystick.getHID(), ControllerConstants.intakeDown)
-        .onFalse(new InstantCommand(
+        .onTrue(new InstantCommand(
             () -> m_IntakeSubsystem.MoveDownIntakeCommand(),
             m_IntakeSubsystem));
         new JoystickButton(joystick.getHID(), ControllerConstants.intakeDown)
@@ -95,7 +95,7 @@ public class RobotContainer {
             m_IntakeSubsystem));
 //intake run
         new JoystickButton(joystick.getHID(), ControllerConstants.intake)
-        .onFalse(new InstantCommand(
+        .onTrue(new InstantCommand(
             () -> m_IntakeSubsystem.startIntakeCommand(),
             m_IntakeSubsystem));
         new JoystickButton(joystick.getHID(), ControllerConstants.intake)
