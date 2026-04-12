@@ -50,6 +50,10 @@ public final class Constants {
        public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
        public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
     }
+    public static final class canID {
+        public static final int k_indexCID = 20;
+        
+    }
 
     public static final class AutoConstants {
         //public static final PIDConstants k_translationPID = new PIDConstants(0.7, 0, 0);
