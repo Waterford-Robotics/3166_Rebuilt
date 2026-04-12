@@ -10,6 +10,8 @@ import edu.wpi.first.units.Units;
 public class Configs {
   public static final class IndexerConfigs {
 
+     public static final TalonFXConfiguration IdexerConfig = new TalonFXConfiguration();
+     public static final TalonFXConfiguration siConfig = new TalonFXConfiguration();
     static{
 
     }
