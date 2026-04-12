@@ -9,8 +9,8 @@ import frc.robot.Constants.ShooterCIDConstants;
 
 
 public class IndexerSubsystem extends SubsystemBase{
-    private Talon IndexMotor;
-    private Talon ShooterintakeMotor;
+    private TalonFX IndexMotor;
+    private TalonFX ShooterintakeMotor;
     public IndexerSubsystem() {
         IndexMotor = new Talon(IndexCIDConstants.k_indexMotor);
         ShooterintakeMotor = new Talon(ShooterCIDConstants.k_shooterIntake);

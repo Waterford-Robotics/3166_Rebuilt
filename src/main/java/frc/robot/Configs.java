@@ -9,15 +9,18 @@ import edu.wpi.first.units.Units;
 
 public class Configs {
   public static final class IndexerConfigs {
+
     static{
 
     }
     
   }
   public static final class ShooterConfigs {
-    static{
-      
-    }
+     public static final TalonFXConfiguration s1Configs = new TalonFXConfiguration();
+     public static final TalonFXConfiguration s2Configs = new TalonFXConfiguration();
+     static{
+
+     }
     
   }
 }
