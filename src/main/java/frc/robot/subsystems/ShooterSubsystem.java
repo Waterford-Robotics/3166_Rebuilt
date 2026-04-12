@@ -5,27 +5,28 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 //import frc.robot.Constants.IndexMotorChannelConstants;
 import frc.robot.Constants.MotorChannelConstants;
 import frc.robot.Constants.ShooterConstants;
+import com.ctre.phoenix6.hardware.TalonFX;
 
 public class ShooterSubsystem extends SubsystemBase{
-     private Talon shooter1;
-     private Talon shooter2;
+     private TalonFX m_shooter1;
+     private TalonFX m_shooter2;
      
     public ShooterSubsystem() {
-        shooter1 = new Talon(MotorChannelConstants.k_shooterShooter1);
-        shooter2 = new Talon(MotorChannelConstants.k_shooterShooter2);
+        m_shooter1 = new TalonFX(MotorChannelConstants.k_shooterShooter1);
+        m_shooter2 = new TalonFX(MotorChannelConstants.k_shooterShooter2);
        
         
     }
 
     public void startShooterCommand() {
-        shooter1.set(ShooterConstants.k_shooter1Speed);
-        shooter2.set(ShooterConstants.k_shooter2Speed);
+        m_shooter1.set(ShooterConstants.k_shooter1Speed);
+        m_shooter2.set(ShooterConstants.k_shooter2Speed);
        
     }
 
     public void stopShooterCommand() {
-        shooter1.set(0);
-        shooter2.set(0);
+        m_shooter1.set(0);
+        m_shooter2.set(0);
         
     }
 
