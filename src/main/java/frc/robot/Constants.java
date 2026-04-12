@@ -39,9 +39,12 @@ public final class Constants {
         public static final int resetNavX = 8;
         public static final int intakeUp = 6; 
         public static final int intakeDown = 5; 
-        public static final int intake = 4; 
-        public static final int shooterRev = 3; 
-        public static final int indexer = 1; 
+        public static final int intake = 4;
+        public static final int intake2 = 3;
+        public static final int intake3 = 2;
+        public static final int intake4 = 1; 
+        public static final int shooterRev = 5; 
+        public static final int indexer = 6; 
        // public static final int k_algaeArmUp = 4;  //Y button
        // public static final int k_algaeArmDown = 1; //A button
        // public static final int k_algaeDisplaceButton = 2; // B button (right)
@@ -69,13 +72,13 @@ public final class Constants {
 
   }
     public static final class ShooterCIDConstants{
-        public static final int k_shooterShooter1 = 6; 
-        public static final int k_shooterShooter2 = 5; 
-        public static final int k_shooterIntake = 4; 
+        public static final int k_shooterShooter1 = 31; 
+        public static final int k_shooterShooter2 = 32; 
+        public static final int k_shooterIntake = 30; 
         
     }
     public static final class IndexCIDConstants{
-        public static final int k_indexMotor = 3; 
+        public static final int k_indexMotor = 20; 
     }
     
     public static final class ShooterConstants{

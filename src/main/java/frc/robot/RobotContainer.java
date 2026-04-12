@@ -13,9 +13,12 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.generated.TunerConstants;
@@ -34,6 +37,7 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
 
     private final CommandXboxController joystick = new CommandXboxController(0);
+    private final CommandXboxController joystick2 = new CommandXboxController(1);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     public final IndexerSubsystem m_IndexerSubsystem = new IndexerSubsystem();
@@ -75,33 +79,64 @@ public class RobotContainer {
             m_ShooterSubsystem));
         
         //upIntake
-        new JoystickButton(joystick.getHID(), ControllerConstants.intakeUp)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intakeUp)
         .onTrue(new InstantCommand(
             () -> m_IntakeSubsystem.MoveUpIntakeCommand(),
             m_IntakeSubsystem));
-        new JoystickButton(joystick.getHID(), ControllerConstants.intakeUp)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intakeUp)
         .onFalse(new InstantCommand(
             () -> m_IntakeSubsystem.StopIntakeElavator(),
             m_IntakeSubsystem));
        
         //downIntake
-        new JoystickButton(joystick.getHID(), ControllerConstants.intakeDown)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intakeDown)
         .onTrue(new InstantCommand(
             () -> m_IntakeSubsystem.MoveDownIntakeCommand(),
             m_IntakeSubsystem));
-        new JoystickButton(joystick.getHID(), ControllerConstants.intakeDown)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intakeDown)
         .onFalse(new InstantCommand(
             () -> m_IntakeSubsystem.StopIntakeElavator(),
             m_IntakeSubsystem));
 //intake run
-        new JoystickButton(joystick.getHID(), ControllerConstants.intake)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake)
         .onTrue(new InstantCommand(
             () -> m_IntakeSubsystem.startIntakeCommand(),
             m_IntakeSubsystem));
-        new JoystickButton(joystick.getHID(), ControllerConstants.intake)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake)
         .onFalse(new InstantCommand(
             () -> m_IntakeSubsystem.stopIntakeCommand(),
             m_IntakeSubsystem));
+// Duplicate 1 (intake2)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake2)
+            .onTrue(new InstantCommand(
+                () -> m_IntakeSubsystem.startIntakeCommand(),
+                 m_IntakeSubsystem));
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake2)
+            .onFalse(new InstantCommand(
+                () -> m_IntakeSubsystem.stopIntakeCommand(),
+                m_IntakeSubsystem));
+
+// Duplicate 2 (intake3)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake3)
+            .onTrue(new InstantCommand(
+                () -> m_IntakeSubsystem.startIntakeCommand(),
+                    m_IntakeSubsystem));
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake3)
+            .onFalse(new InstantCommand(
+             () -> m_IntakeSubsystem.stopIntakeCommand(),
+                m_IntakeSubsystem));
+
+// Duplicate 3 (intake4)
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake4)
+         .onTrue(new InstantCommand(
+             () -> m_IntakeSubsystem.startIntakeCommand(),
+                m_IntakeSubsystem));
+        new JoystickButton(joystick2.getHID(), ControllerConstants.intake4)
+            .onFalse(new InstantCommand(
+             () -> m_IntakeSubsystem.stopIntakeCommand(),
+                m_IntakeSubsystem));
+        
+        
 
         
 
