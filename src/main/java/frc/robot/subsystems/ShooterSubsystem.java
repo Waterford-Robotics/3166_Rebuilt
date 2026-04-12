@@ -2,8 +2,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-//import frc.robot.Constants.IndexMotorChannelConstants;
-import frc.robot.Constants.MotorChannelConstants;
+
+
+import frc.robot.Constants.ShooterCIDConstants;
 import frc.robot.Constants.ShooterConstants;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -12,8 +13,8 @@ public class ShooterSubsystem extends SubsystemBase{
      private TalonFX m_shooter2;
      
     public ShooterSubsystem() {
-        m_shooter1 = new TalonFX(MotorChannelConstants.k_shooterShooter1);
-        m_shooter2 = new TalonFX(MotorChannelConstants.k_shooterShooter2);
+        m_shooter1 = new TalonFX(ShooterCIDConstants.k_shooterShooter1);
+        m_shooter2 = new TalonFX(ShooterCIDConstants.k_shooterShooter2);
        
         
     }

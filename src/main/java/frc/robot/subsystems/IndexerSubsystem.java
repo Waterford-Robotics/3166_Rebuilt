@@ -2,17 +2,18 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.IndexMotorChannelConstants;
-import frc.robot.Constants.MotorChannelConstants;
+import frc.robot.Constants.IndexCIDConstants;
+
 import frc.robot.Constants.IndexerConstants;
+import frc.robot.Constants.ShooterCIDConstants;
 
 
 public class IndexerSubsystem extends SubsystemBase{
     private Talon IndexMotor;
     private Talon ShooterintakeMotor;
     public IndexerSubsystem() {
-        IndexMotor = new Talon(IndexMotorChannelConstants.k_indexMotor);
-        ShooterintakeMotor = new Talon(MotorChannelConstants.k_shooterIntake);
+        IndexMotor = new Talon(IndexCIDConstants.k_indexMotor);
+        ShooterintakeMotor = new Talon(ShooterCIDConstants.k_shooterIntake);
 
     }
 

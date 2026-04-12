@@ -68,13 +68,13 @@ public final class Constants {
         public static final double k_ShooterIntakeSpeed = -.3;
 
   }
-    public static final class MotorChannelConstants{
+    public static final class ShooterCIDConstants{
         public static final int k_shooterShooter1 = 6; 
         public static final int k_shooterShooter2 = 5; 
         public static final int k_shooterIntake = 4; 
         
     }
-    public static final class IndexMotorChannelConstants{
+    public static final class IndexCIDConstants{
         public static final int k_indexMotor = 3; 
     }
     
