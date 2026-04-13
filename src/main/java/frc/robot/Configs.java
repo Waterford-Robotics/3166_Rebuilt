@@ -32,6 +32,18 @@ public class Configs {
      public static final TalonFXConfiguration IdexerConfig = new TalonFXConfiguration();
      public static final TalonFXConfiguration siConfig = new TalonFXConfiguration();
     static{
+      siConfig.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+      siConfig.MotorOutput.PeakForwardDutyCycle = 0.6;
+      siConfig.MotorOutput.PeakReverseDutyCycle = -0.6;
+      siConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      siConfig.CurrentLimits.SupplyCurrentLimit = 40;
+
+      IdexerConfig.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+      IdexerConfig.MotorOutput.PeakForwardDutyCycle =0.95;
+      IdexerConfig.MotorOutput.PeakReverseDutyCycle = -0.95;
+      IdexerConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      IdexerConfig.CurrentLimits.SupplyCurrentLimit = 40;
+
       
 
     }
@@ -41,6 +53,17 @@ public class Configs {
      public static final TalonFXConfiguration s1Configs = new TalonFXConfiguration();
      public static final TalonFXConfiguration s2Configs = new TalonFXConfiguration();
      static{
+      s1Configs.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.5;
+      s1Configs.MotorOutput.PeakForwardDutyCycle = 0.6;
+      s1Configs.MotorOutput.PeakReverseDutyCycle = -0.6;
+      s1Configs.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+      s1Configs.CurrentLimits.SupplyCurrentLimit = 40;
+
+      s2Configs.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.5;
+      s2Configs.MotorOutput.PeakForwardDutyCycle = 0.6;
+      s2Configs.MotorOutput.PeakReverseDutyCycle = -0.6;
+      s2Configs.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+      s2Configs.CurrentLimits.SupplyCurrentLimit = 40;
   
      }
     
