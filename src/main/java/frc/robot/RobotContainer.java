@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
@@ -59,6 +60,10 @@ public class RobotContainer {
                     .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
             )
         );
+        new JoystickButton(joystick.getHID(), 8)
+		.onTrue(
+				new InstantCommand(() -> drivetrain.resetGyro(), drivetrain)
+		);
        //index
         new JoystickButton(joystick.getHID(), ControllerConstants.indexer)
         .onTrue(new InstantCommand(

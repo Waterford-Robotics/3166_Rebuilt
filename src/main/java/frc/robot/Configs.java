@@ -7,12 +7,18 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.units.Units;
 
 
+
+import com.ctre.phoenix6.signals.NeutralModeValue;
+
+
+
 public class Configs {
   public static final class IndexerConfigs {
 
      public static final TalonFXConfiguration IdexerConfig = new TalonFXConfiguration();
      public static final TalonFXConfiguration siConfig = new TalonFXConfiguration();
     static{
+      
 
     }
     
