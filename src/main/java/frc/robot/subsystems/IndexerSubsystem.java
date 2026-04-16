@@ -14,8 +14,8 @@ public class IndexerSubsystem extends SubsystemBase{
     private TalonFX IndexMotor;
     private TalonFX ShooterintakeMotor;
     public IndexerSubsystem() {
-        IndexMotor = new TalonFX(IndexCIDConstants.k_indexMotor);
-        ShooterintakeMotor = new TalonFX(ShooterCIDConstants.k_shooterIntake);
+        IndexMotor = new TalonFX(IndexCIDConstants.k_indexMotor,"secondcanloop");
+        ShooterintakeMotor = new TalonFX(ShooterCIDConstants.k_shooterIntake,"secondcanloop");
         
         IndexMotor.getConfigurator().apply(IndexerConfigs.IdexerConfig);
         ShooterintakeMotor.getConfigurator().apply(IndexerConfigs.siConfig);

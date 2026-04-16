@@ -9,7 +9,10 @@ import static edu.wpi.first.units.Units.*;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
+import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -22,6 +25,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.Constants.ControllerConstants;
+import frc.robot.commands.IndexForSecsCommand;
+import frc.robot.commands.IntakeDownCommand;
+import frc.robot.commands.ShootForSecsCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.IndexerSubsystem;
@@ -44,9 +50,23 @@ public class RobotContainer {
     public final IndexerSubsystem m_IndexerSubsystem = new IndexerSubsystem();
     public final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
     public final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
-
+    
+    private SendableChooser<Command> m_chooser = new SendableChooser<>();
+    
+    
     public RobotContainer() {
         configureBindings();
+        
+        NamedCommands.registerCommand("ShootCommand",
+            new ShootForSecsCommand(m_ShooterSubsystem, 5)
+        );
+         NamedCommands.registerCommand("IndexCommand",
+            new IndexForSecsCommand(m_IndexerSubsystem, 5)
+        );
+        NamedCommands.registerCommand("IntakeDownCommand",
+            new IntakeDownCommand(m_IntakeSubsystem, 1.5)
+        );
+
     }
 
     private void configureBindings() {

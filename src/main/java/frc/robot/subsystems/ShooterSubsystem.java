@@ -14,8 +14,8 @@ public class ShooterSubsystem extends SubsystemBase{
      private TalonFX m_shooter2;
      
     public ShooterSubsystem() {
-        m_shooter1 = new TalonFX(ShooterCIDConstants.k_shooterShooter1);
-        m_shooter2 = new TalonFX(ShooterCIDConstants.k_shooterShooter2);
+        m_shooter1 = new TalonFX(ShooterCIDConstants.k_shooterShooter1,"secondcanloop");
+        m_shooter2 = new TalonFX(ShooterCIDConstants.k_shooterShooter2,"secondcanloop");
 
         m_shooter1.getConfigurator().apply(ShooterConfigs.s1Configs);
         m_shooter2.getConfigurator().apply(ShooterConfigs.s2Configs);
