@@ -11,12 +11,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "ShootComand"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "right to mid"
@@ -25,13 +19,26 @@
         {
           "type": "named",
           "data": {
-            "name": "IndexCommand"
+            "name": "ShootComand"
           }
         },
         {
-          "type": "wait",
+          "type": "parallel",
           "data": {
-            "waitTime": 3.0
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShootComand"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IndexCommand"
+                }
+              }
+            ]
           }
         },
         {
