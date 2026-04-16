@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.XboxController.Axis;
 
 public final class Constants {
     
-    
 
     public static final class ControllerConstants {
         
@@ -21,7 +20,11 @@ public final class Constants {
         public static final int intake4 = 1; 
         public static final int shooterRev = 5; 
         public static final int indexer = 6; 
-       
+       // public static final int k_algaeArmUp = 4;  //Y button
+       // public static final int k_algaeArmDown = 1; //A button
+       // public static final int k_algaeDisplaceButton = 2; // B button (right)
+       // public static final int k_troughRollerForwardButton = 6; //Right bumper
+       // public static final int k_troughRollerBackwardButton = 5; //Left bumper
        public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
        public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
     }
@@ -31,11 +34,16 @@ public final class Constants {
     }
 
     public static final class AutoConstants {
+        //public static final PIDConstants k_translationPID = new PIDConstants(0.7, 0, 0);
+        //public static final PIDConstants k_anglePID = new PIDConstants(0.4, 0, 0.01);
+
+       // public static final double spinUpAutoTime = 8; 
+       // public static final double shootAutoTime = 3; 
         
   }  
   public static final class IndexerConstants{
-        public static final double k_IndexerSpeed = .3;
-        public static final double k_ShooterIntakeSpeed = .3;
+        public static final double k_IndexerSpeed = .1;
+        public static final double k_ShooterIntakeSpeed = -.1;
 
   }
     public static final class ShooterCIDConstants{
@@ -49,8 +57,8 @@ public final class Constants {
     }
     
     public static final class ShooterConstants{
-        public static final double k_shooter1Speed = .7;
-        public static final double k_shooter2Speed = -.7;
+        public static final double k_shooter1Speed = -.1;
+        public static final double k_shooter2Speed = .1;
        
         
     }
@@ -61,10 +69,10 @@ public final class Constants {
         
     }
     public static final class IntakeConstants{
-        public static final double k_ElivatorMoveSpeedDown = -.4;
-        public static final double k_ElivatorMoveSpeedUp = .4;
+        public static final double k_ElivatorMoveSpeedDown = -.2;
+        public static final double k_ElivatorMoveSpeedUp = .2;
 
-        public static final double k_MainIntakeSpeed = .8;
+        public static final double k_MainIntakeSpeed = .75;
        
         
     }

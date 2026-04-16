@@ -5,34 +5,27 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "ShootComand"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "mid"
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "IntakedownCommand"
+            "waitTime": 3.0
           }
         },
         {
-          "type": "parallel",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShootComand"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "IndexCommand"
-                }
-              }
-            ]
+            "name": "IndexCommand"
           }
         }
       ]
