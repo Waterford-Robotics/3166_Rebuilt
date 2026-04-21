@@ -1,21 +1,21 @@
-package frc.robot.commands;
 
-import frc.robot.subsystems.IndexerSubsystem;
+    package frc.robot.commands;
+
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-public class IndexForSecsCommand extends Command{
-    IndexerSubsystem m_IndexerSubsystem;
+public class IntakeUpCommand extends Command{
+    IntakeSubsystem m_IntakeSubsystem;
   double m_seconds;
   Timer m_timer = new Timer();
 
 
  // Constructor
-  public IndexForSecsCommand(IndexerSubsystem IndexerSubsystem, double seconds) {
+  public IntakeUpCommand(IntakeSubsystem IntakeSubsystem, double seconds) {
         
     // Definitions and setting parameters are equal to members!
-    m_IndexerSubsystem = IndexerSubsystem;
-    addRequirements(IndexerSubsystem);
+    m_IntakeSubsystem = IntakeSubsystem;
+    addRequirements(IntakeSubsystem);
     m_seconds = seconds;
   }
 
@@ -27,15 +27,12 @@ public class IndexForSecsCommand extends Command{
   
   // Actual command
   public void execute() {
-      m_IndexerSubsystem.startIndexerCommand();
-      SmartDashboard.putString("index end", "started");
-
+      m_IntakeSubsystem.MoveUpIntakeCommand();
   }
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
-    m_IndexerSubsystem.stopIndexerCommand();
-    SmartDashboard.putString("index end", "ended");
+    m_IntakeSubsystem.StopIntakeElavator();
   }
 
   // Checks if the command is done

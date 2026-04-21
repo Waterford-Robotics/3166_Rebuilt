@@ -18,8 +18,8 @@ public final class Constants {
         public static final int intake2 = 3;
         public static final int intake3 = 2;
         public static final int intake4 = 1; 
-        public static final int shooterRev = 5; 
-        public static final int indexer = 6; 
+        public static final int shooterRev = 6; 
+        public static final int indexer = 5; 
        // public static final int k_algaeArmUp = 4;  //Y button
        // public static final int k_algaeArmDown = 1; //A button
        // public static final int k_algaeDisplaceButton = 2; // B button (right)
@@ -42,8 +42,8 @@ public final class Constants {
         
   }  
   public static final class IndexerConstants{
-        public static final double k_IndexerSpeed = .1;
-        public static final double k_ShooterIntakeSpeed = -.1;
+        public static final double k_IndexerSpeed = .2;
+        public static final double k_ShooterIntakeSpeed = .3;
 
   }
     public static final class ShooterCIDConstants{
@@ -57,8 +57,8 @@ public final class Constants {
     }
     
     public static final class ShooterConstants{
-        public static final double k_shooter1Speed = -.7;
-        public static final double k_shooter2Speed = .7;
+        public static final double k_shooter1Speed = .65;
+        public static final double k_shooter2Speed = -0.65;
        
         
     }
@@ -69,10 +69,10 @@ public final class Constants {
         
     }
     public static final class IntakeConstants{
-        public static final double k_ElivatorMoveSpeedDown = -.2;
-        public static final double k_ElivatorMoveSpeedUp = .2;
+        public static final double k_ElivatorMoveSpeedDown = -.5;
+        public static final double k_ElivatorMoveSpeedUp = .5;
 
-        public static final double k_MainIntakeSpeed = .75;
+        public static final double k_MainIntakeSpeed = .85;
        
         
     }

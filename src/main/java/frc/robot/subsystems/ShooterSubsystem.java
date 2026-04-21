@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs.IndexerConfigs;
 import frc.robot.Configs.ShooterConfigs;
@@ -26,7 +27,8 @@ public class ShooterSubsystem extends SubsystemBase{
     public void startShooterCommand() {
         m_shooter1.set(ShooterConstants.k_shooter1Speed);
         m_shooter2.set(ShooterConstants.k_shooter2Speed);
-       
+        
+
     }
 
     public void stopShooterCommand() {

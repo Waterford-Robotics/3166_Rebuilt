@@ -7,6 +7,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 
@@ -34,11 +35,14 @@ public class ShootForSecsCommand extends Command {
   // Actual command
   public void execute() {
       m_shooterSubsystem.startShooterCommand();
+      SmartDashboard.putString("shoot end", "started");
+
   }
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
     m_shooterSubsystem.stopShooterCommand();
+    SmartDashboard.putString("shoot end", "ended");
   }
 
   // Checks if the command is done

@@ -8,15 +8,20 @@ import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
-
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -33,6 +38,8 @@ import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.IntakeUpCommand;
+import frc.robot.commands.Intake;
 
 public class RobotContainer {
     private double MaxSpeed = 1.0 * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -50,22 +57,49 @@ public class RobotContainer {
     public final IndexerSubsystem m_IndexerSubsystem = new IndexerSubsystem();
     public final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
     public final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
+
     
-    private SendableChooser<Command> m_chooser = new SendableChooser<>();
+	private SendableChooser<Command> m_chooser = new SendableChooser<>();
     
     
     public RobotContainer() {
         configureBindings();
+        //m_chooser = AutoBuilder.buildAutoChooser("SAS");
+        //dont change, it boot loops!!!!!
         
+
+        //NamedCommands.registerCommand("SAS", getAutonomousCommand());
+        //m_chooser.addOption("SAS", getAutonomousCommand());
         NamedCommands.registerCommand("ShootCommand",
-            new ShootForSecsCommand(m_ShooterSubsystem, 5)
+            new ShootForSecsCommand(m_ShooterSubsystem, 4)
         );
          NamedCommands.registerCommand("IndexCommand",
-            new IndexForSecsCommand(m_IndexerSubsystem, 5)
+            new IndexForSecsCommand(m_IndexerSubsystem, 4)
         );
         NamedCommands.registerCommand("IntakeDownCommand",
             new IntakeDownCommand(m_IntakeSubsystem, 1.5)
         );
+        NamedCommands.registerCommand("RevCommand",
+            new ShootForSecsCommand(m_ShooterSubsystem, 2)
+        );
+        NamedCommands.registerCommand("UpCommand",
+            new IntakeUpCommand(m_IntakeSubsystem, 2)
+        );
+        NamedCommands.registerCommand("Intake",
+            new Intake(m_IntakeSubsystem, 2)
+        );
+        NamedCommands.registerCommand("Shoot", 
+           new ParallelCommandGroup(
+            new IndexForSecsCommand(m_IndexerSubsystem, 4),
+            new ShootForSecsCommand(m_ShooterSubsystem, 4)
+
+        )
+        );
+        NamedCommands.registerCommand("Rev and Shoot", 
+        shootCommandGroup());
+        //add named command that calls the sequential command group method below, add this to pathplanner as named command
+		m_chooser.addOption("SAS", drivetrain.getAutonomousCommand("SAS"));
+        SmartDashboard.putData("Automode", m_chooser);
 
     }
 
@@ -74,13 +108,14 @@ public class RobotContainer {
         // and Y is defined as to the left according to WPILib convention.
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
-            drivetrain.applyRequest(() ->
+            drivetrain.applyRequest(() ->  
                 drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
                     .withVelocityY(-joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
                     .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
             )
         );
-        new JoystickButton(joystick.getHID(), 8)
+        
+        new JoystickButton(joystick.getHID(), 7)
 		.onTrue(
 				new InstantCommand(() -> drivetrain.resetGyro(), drivetrain)
 		);
@@ -122,7 +157,7 @@ public class RobotContainer {
         .onFalse(new InstantCommand(
             () -> m_IntakeSubsystem.StopIntakeElavator(),
             m_IntakeSubsystem));
-//intake run
+        //intake run
         new JoystickButton(joystick2.getHID(), ControllerConstants.intake)
         .onTrue(new InstantCommand(
             () -> m_IntakeSubsystem.startIntakeCommand(),
@@ -131,7 +166,7 @@ public class RobotContainer {
         .onFalse(new InstantCommand(
             () -> m_IntakeSubsystem.stopIntakeCommand(),
             m_IntakeSubsystem));
-// Duplicate 1 (intake2)
+        // Duplicate 1 (intake2)
         new JoystickButton(joystick2.getHID(), ControllerConstants.intake2)
             .onTrue(new InstantCommand(
                 () -> m_IntakeSubsystem.startIntakeCommand(),
@@ -141,7 +176,7 @@ public class RobotContainer {
                 () -> m_IntakeSubsystem.stopIntakeCommand(),
                 m_IntakeSubsystem));
 
-// Duplicate 2 (intake3)
+        // Duplicate 2 (intake3)
         new JoystickButton(joystick2.getHID(), ControllerConstants.intake3)
             .onTrue(new InstantCommand(
                 () -> m_IntakeSubsystem.startIntakeCommand(),
@@ -151,7 +186,7 @@ public class RobotContainer {
              () -> m_IntakeSubsystem.stopIntakeCommand(),
                 m_IntakeSubsystem));
 
-// Duplicate 3 (intake4)
+        // Duplicate 3 (intake4)
         new JoystickButton(joystick2.getHID(), ControllerConstants.intake4)
          .onTrue(new InstantCommand(
              () -> m_IntakeSubsystem.startIntakeCommand(),
@@ -186,20 +221,36 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         // Simple drive forward auton
-        final var idle = new SwerveRequest.Idle();
-        return Commands.sequence(
-            // Reset our field centric heading to match the robot
-            // facing away from our alliance station wall (0 deg).
-            drivetrain.runOnce(() -> drivetrain.seedFieldCentric(Rotation2d.kZero)),
-            // Then slowly drive forward (away from us) for 5 seconds.
-            drivetrain.applyRequest(() ->
-                drive.withVelocityX(0.5)
-                    .withVelocityY(0)
-                    .withRotationalRate(0)
+        //final var idle = new SwerveRequest.Idle();
+        // m_chooser.getSelected();
+            return m_chooser.getSelected();
+        // return Commands.sequence(
+        //     // Reset our field centric heading to match the robot
+        //     // facing away from our alliance station wall (0 deg).
+        //     drivetrain.runOnce(() -> drivetrain.seedFieldCentric(Rotation2d.kZero)),
+        //     // Then slowly drive forward (away from us) for 5 seconds.
+        //     drivetrain.applyRequest(() ->
+        //         drive.withVelocityX(0.5)
+        //             .withVelocityY(0)
+        //             .withRotationalRate(0)
+        //     )
+        //     .withTimeout(5.0),
+        //     // Finally idle for the rest of auton
+        //     drivetrain.applyRequest(() -> idle)
+            
+        // );
+              //return m_chooser.getSelected();
+
+    }
+
+    public SequentialCommandGroup shootCommandGroup(){
+        return  new SequentialCommandGroup(
+            new ShootForSecsCommand(m_ShooterSubsystem, 1.5),
+            new ParallelCommandGroup(
+                new ShootForSecsCommand(m_ShooterSubsystem, 4),
+                new IndexForSecsCommand(m_IndexerSubsystem, 4)
             )
-            .withTimeout(5.0),
-            // Finally idle for the rest of auton
-            drivetrain.applyRequest(() -> idle)
         );
+
     }
 }

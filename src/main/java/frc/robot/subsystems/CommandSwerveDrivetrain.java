@@ -10,10 +10,17 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.config.PIDConstants;
+import com.pathplanner.lib.config.RobotConfig;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import com.pathplanner.lib.controllers.PPLTVController;
 
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -52,7 +59,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private final SwerveRequest.SysIdSwerveTranslation m_translationCharacterization = new SwerveRequest.SysIdSwerveTranslation();
     private final SwerveRequest.SysIdSwerveSteerGains m_steerCharacterization = new SwerveRequest.SysIdSwerveSteerGains();
     private final SwerveRequest.SysIdSwerveRotation m_rotationCharacterization = new SwerveRequest.SysIdSwerveRotation();
-
+    private final SwerveRequest.ApplyRobotSpeeds m_pathApplyRobotSpeeds = new SwerveRequest.ApplyRobotSpeeds();
+        RobotConfig config;
+    
     /* SysId routine for characterizing translation. This is used to find PID gains for the drive motors. */
     private final SysIdRoutine m_sysIdRoutineTranslation = new SysIdRoutine(
         new SysIdRoutine.Config(
@@ -133,7 +142,39 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (Utils.isSimulation()) {
             startSimThread();
         }
-    }
+         
+        try{
+            config = RobotConfig.fromGUISettings();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        AutoBuilder.configure(
+            () -> getState().Pose,
+            this::resetPose, 
+            () -> getState().Speeds,
+            (speeds, feedforwards) -> setControl(
+                m_pathApplyRobotSpeeds.withSpeeds(ChassisSpeeds.discretize(speeds, 0.02))
+                .withWheelForceFeedforwardsX(feedforwards.robotRelativeForcesXNewtons())
+                .withWheelForceFeedforwardsY(feedforwards.robotRelativeForcesYNewtons())
+
+            ),
+            new PPHolonomicDriveController(
+                new PIDConstants(10.0, 0.0, 0.0),
+                new PIDConstants(7.0, 0.0, 0.0)
+            ) ,
+            config,  
+            () -> {
+                var alliance = DriverStation.getAlliance();
+                if (alliance.isPresent()){
+                    return alliance.get() == DriverStation.Alliance.Red;
+                }
+                return false;
+
+            },
+            this
+            );
+    }       
 
     /**
      * Constructs a CTRE SwerveDrivetrain using the specified constants.
@@ -302,5 +343,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     @Override
     public Optional<Pose2d> samplePoseAt(double timestampSeconds) {
         return super.samplePoseAt(Utils.fpgaToCurrentTime(timestampSeconds));
+    }
+    public Command getAutonomousCommand( String PathName ){
+        return new PathPlannerAuto(PathName);
     }
 }

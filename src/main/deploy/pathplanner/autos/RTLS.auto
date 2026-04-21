@@ -5,33 +5,21 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "ShootComand"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "left to mid"
+            "pathName": "right to mid"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "IndexCommand"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.0
+            "name": "Shoot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "mid to right"
+            "pathName": "mid to left"
           }
         }
       ]
